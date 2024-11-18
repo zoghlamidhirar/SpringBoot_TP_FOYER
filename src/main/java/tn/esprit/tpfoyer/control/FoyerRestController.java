@@ -1,7 +1,10 @@
 package tn.esprit.tpfoyer.control;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.tpfoyer.entity.Bloc;
 import tn.esprit.tpfoyer.entity.Foyer;
 import tn.esprit.tpfoyer.service.IFoyerService;
 
@@ -46,5 +49,26 @@ public class FoyerRestController {
     public Foyer modifyFoyer(@RequestBody Foyer c) {
         Foyer Foyer = FoyerService.modifyFoyer(c);
         return Foyer;
+    }
+
+    // creation d'un bloc et un foyer en mm temps
+    @PostMapping("/createWithBlocs")
+    public ResponseEntity<Foyer> createFoyerWithBlocs(@RequestBody Foyer foyer) {
+        Foyer createdFoyer = FoyerService.createFoyerWithBlocs(foyer);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdFoyer);
+    }
+
+    // Affectation d'un Bloc à un Foyer deja existant
+    @PostMapping("/assignBloc")
+    public ResponseEntity<Bloc> assignBlocToFoyer(@RequestParam Long blocId, @RequestParam Long foyerId) {
+        Bloc updatedBloc = FoyerService.assignBlocToFoyer(blocId, foyerId);
+        return ResponseEntity.ok(updatedBloc);
+    }
+
+    //  Désaffectation d'un Bloc de son Foyer
+    @PostMapping("/removeBloc")
+    public ResponseEntity<Bloc> removeBlocFromFoyer(@RequestParam Long blocId) {
+        Bloc updatedBloc = FoyerService.removeBlocFromFoyer(blocId);
+        return ResponseEntity.ok(updatedBloc);
     }
 }

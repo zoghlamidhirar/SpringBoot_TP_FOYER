@@ -10,6 +10,8 @@ public interface IReservationService {
     public void removeReservation(Long ReservationId);
     public Reservation modifyReservation(Reservation Reservation);
 
+    public void mettreAJourEtAfficherReservations();
+
 // Later on ...
 // Here we will add later methods calling keywords and methods calling JPQL
 

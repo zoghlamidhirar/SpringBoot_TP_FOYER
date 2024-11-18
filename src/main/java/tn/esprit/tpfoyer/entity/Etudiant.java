@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Etudiant {
 
     @Id
@@ -24,5 +25,6 @@ public class Etudiant {
     private Date dateNaissance;
 
     @ManyToMany(mappedBy = "etudiants")
+    @ToString.Exclude
     private List<Reservation> reservations;
 }

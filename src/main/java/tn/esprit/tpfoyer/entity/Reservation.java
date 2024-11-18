@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Reservation {
 
     @Id
@@ -26,6 +27,7 @@ public class Reservation {
     private Chambre chambre;  */
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<Etudiant> etudiants;
 
 

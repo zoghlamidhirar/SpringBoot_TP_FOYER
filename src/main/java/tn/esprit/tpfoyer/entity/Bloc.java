@@ -1,9 +1,13 @@
 package tn.esprit.tpfoyer.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -11,6 +15,7 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Bloc {
 
     @Id
@@ -22,8 +27,11 @@ public class Bloc {
 
     @ManyToOne
     @JoinColumn(name = "foyer_id")
+    @ToString.Exclude
     private Foyer foyer;
 
-    @OneToMany(mappedBy = "bloc")
-    private List<Chambre> chambres;
+    @OneToMany(mappedBy = "bloc",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    //@JsonIgnore
+    private Set<Chambre> chambres = new HashSet<Chambre>();
 }

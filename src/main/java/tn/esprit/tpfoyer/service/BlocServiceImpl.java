@@ -13,6 +13,7 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 public class BlocServiceImpl implements IBlocService {
+
     BlocRepository BlocRepository;
 
     @Scheduled(fixedDelay = 60000)
@@ -20,8 +21,11 @@ public class BlocServiceImpl implements IBlocService {
     public List<Bloc> retrieveAllBloc() {
 
         List<Bloc> blocs = BlocRepository.findAll();
-        for (Bloc c: blocs) {
-            log.info("Bloc :" + c);
+
+        log.info("Nombre de Blocs : " + blocs.size());
+
+        for (Bloc b: blocs) {
+            log.info("Bloc :" + b);
         }
         return blocs;
     }

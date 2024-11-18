@@ -3,6 +3,7 @@ package tn.esprit.tpfoyer.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,6 +23,7 @@ public class Foyer {
 
 
 
-    @OneToMany(mappedBy = "foyer")
-    private List<Bloc> blocs;
+    @OneToMany(mappedBy = "foyer",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Bloc> blocs = new ArrayList<>();
 }
