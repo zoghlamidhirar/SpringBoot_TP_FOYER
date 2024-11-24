@@ -52,23 +52,24 @@ public class FoyerRestController {
     }
 
     // creation d'un bloc et un foyer en mm temps
-    @PostMapping("/createWithBlocs")
+    @PostMapping("/createFoyerWithBlocs")
     public ResponseEntity<Foyer> createFoyerWithBlocs(@RequestBody Foyer foyer) {
         Foyer createdFoyer = FoyerService.createFoyerWithBlocs(foyer);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdFoyer);
     }
 
     // Affectation d'un Bloc à un Foyer deja existant
-    @PostMapping("/assignBloc")
-    public ResponseEntity<Bloc> assignBlocToFoyer(@RequestParam Long blocId, @RequestParam Long foyerId) {
-        Bloc updatedBloc = FoyerService.assignBlocToFoyer(blocId, foyerId);
-        return ResponseEntity.ok(updatedBloc);
+    @PutMapping("/assignExistingBlocToAnExistingFoyer")
+    public void assignBlocToFoyer(@RequestParam Long blocId, @RequestParam Long foyerId) {
+        FoyerService.assignBlocToFoyer(blocId, foyerId);
+
     }
 
     //  Désaffectation d'un Bloc de son Foyer
-    @PostMapping("/removeBloc")
-    public ResponseEntity<Bloc> removeBlocFromFoyer(@RequestParam Long blocId) {
-        Bloc updatedBloc = FoyerService.removeBlocFromFoyer(blocId);
-        return ResponseEntity.ok(updatedBloc);
+    @PutMapping("/removeBloc")
+    public void removeBlocFromFoyer(@RequestParam Long blocId) {
+        FoyerService.removeBlocFromFoyer(blocId);
+
     }
+
 }

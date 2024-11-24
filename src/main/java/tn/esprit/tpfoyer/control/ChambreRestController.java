@@ -3,6 +3,7 @@ package tn.esprit.tpfoyer.control;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.entity.Chambre;
+import tn.esprit.tpfoyer.entity.Reservation;
 import tn.esprit.tpfoyer.service.IChambreService;
 
 import java.util.List;
@@ -47,4 +48,25 @@ public class ChambreRestController {
         Chambre chambre = chambreService.modifyChambre(c);
         return chambre;
     }
+
+    @PostMapping("/createChambreWithReservation")
+    public Chambre createChambreWithReservation(@RequestBody Chambre chambre) {
+        Chambre createdChambre = chambreService.createChambreWithReservation(chambre);
+        return createdChambre;
+    }
+
+    @PostMapping("/reserveChambre")
+    public Chambre reserveChambre(@RequestParam Long chambreId, @RequestBody Reservation reservation) {
+        Chambre updatedChambre = chambreService.reserveChambre(chambreId, reservation);
+        return updatedChambre;
+    }
+
+    @PutMapping("/removeReservationFromChambre")
+    public void removeReservationFromChambre(@RequestParam String reservationId) {
+         chambreService.removeReservationFromChambre(reservationId);
+
+    }
+
+
+
 }

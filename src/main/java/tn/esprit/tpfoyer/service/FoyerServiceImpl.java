@@ -58,17 +58,25 @@ public class FoyerServiceImpl implements IFoyerService {
     }
 
     // Affectation d'un Bloc à un Foyer deja existant
-    public Bloc assignBlocToFoyer(Long blocId, Long foyerId) {
+    public void assignBlocToFoyer(Long blocId, Long foyerId) {
         Bloc bloc = BlocRepository.findById(blocId).orElseThrow(() -> new EntityNotFoundException("Bloc not found"));
         Foyer foyer = FoyerRepository.findById(foyerId).orElseThrow(() -> new EntityNotFoundException("Foyer not found"));
         bloc.setFoyer(foyer);
-        return BlocRepository.save(bloc);
+        foyer.getBlocs().add(bloc);
+        FoyerRepository.save(foyer);
+        BlocRepository.save(bloc);
     }
 
     // Désaffectation d'un Bloc de son Foyer
-    public Bloc removeBlocFromFoyer(Long blocId) {
+    public void removeBlocFromFoyer(Long blocId) {
         Bloc bloc = BlocRepository.findById(blocId).orElseThrow(() -> new EntityNotFoundException("Bloc not found"));
-        bloc.setFoyer(null);
-        return BlocRepository.save(bloc);
+
+        Foyer foyer = bloc.getFoyer();
+        if (foyer != null) {
+            foyer.getBlocs().remove(bloc);
+            bloc.setFoyer(null);
+            FoyerRepository.save(foyer);
+        }
     }
+
 }

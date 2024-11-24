@@ -21,10 +21,10 @@ public class Reservation {
     private Date anneeUniversitaire;
     private boolean estValide;
 
-
-  /*  @ManyToOne
+    @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name = "chambre_id")
-    private Chambre chambre;  */
+    private Chambre chambre;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @ToString.Exclude

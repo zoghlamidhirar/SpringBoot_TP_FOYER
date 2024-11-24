@@ -25,6 +25,6 @@ public class Chambre {
     @JoinColumn(name = "bloc_id")
     private Bloc bloc;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "chambre",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reservation> reservations;
 }

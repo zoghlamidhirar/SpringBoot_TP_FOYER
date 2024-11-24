@@ -9,6 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface ReservationRepository extends JpaRepository<Reservation, Long> {
+public interface ReservationRepository extends JpaRepository<Reservation, String> {
     List<Reservation> findByAnneeUniversitaireBefore(Date date);
 }

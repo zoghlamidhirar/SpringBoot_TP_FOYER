@@ -24,7 +24,7 @@ public class ReservationServiceImpl implements IReservationService {
         return ReservationRepository.findAll();
     }
 
-    public Reservation retrieveReservation(Long ReservationId) {
+    public Reservation retrieveReservation(String ReservationId) {
         return ReservationRepository.findById(ReservationId).get();
     }
 
@@ -32,7 +32,7 @@ public class ReservationServiceImpl implements IReservationService {
         return ReservationRepository.save(c);
     }
 
-    public void removeReservation(Long ReservationId) {
+    public void removeReservation(String ReservationId) {
         ReservationRepository.deleteById(ReservationId);
     }
 

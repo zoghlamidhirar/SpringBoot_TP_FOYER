@@ -1,6 +1,8 @@
 package tn.esprit.tpfoyer.service;
 
 import tn.esprit.tpfoyer.entity.Chambre;
+import tn.esprit.tpfoyer.entity.Reservation;
+
 import java.util.List;
 
 public interface IChambreService {
@@ -9,6 +11,12 @@ public interface IChambreService {
     public Chambre addChambre(Chambre c);
     public void removeChambre(Long chambreId);
     public Chambre modifyChambre(Chambre chambre);
+
+    public Chambre createChambreWithReservation(Chambre chambre);
+
+    public Chambre reserveChambre(Long chambreId, Reservation reservation);
+
+    public void removeReservationFromChambre(String reservationId);
 
 // Later on ...
 // Here we will add later methods calling keywords and methods calling JPQL

@@ -13,9 +13,9 @@ public interface IFoyerService {
 
     public Foyer createFoyerWithBlocs(Foyer foyer);
 
-    public Bloc assignBlocToFoyer(Long blocId, Long foyerId);
+    public void assignBlocToFoyer(Long blocId, Long foyerId);
 
-    public Bloc removeBlocFromFoyer(Long blocId);
+    public void removeBlocFromFoyer(Long blocId);
 // Later on ...
 // Here we will add later methods calling keywords and methods calling JPQL
 

@@ -24,6 +24,5 @@ public class Foyer {
 
 
     @OneToMany(mappedBy = "foyer",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @ToString.Exclude
     private List<Bloc> blocs = new ArrayList<>();
 }

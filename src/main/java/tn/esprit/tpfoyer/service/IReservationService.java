@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface IReservationService {
     public List<Reservation> retrieveAllReservations();
-    public Reservation retrieveReservation(Long ReservationId);
+    public Reservation retrieveReservation(String ReservationId);
     public Reservation addReservation(Reservation c);
-    public void removeReservation(Long ReservationId);
+    public void removeReservation(String ReservationId);
     public Reservation modifyReservation(Reservation Reservation);
 
     public void mettreAJourEtAfficherReservations();
